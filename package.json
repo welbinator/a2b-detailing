@@ -1,0 +1,16 @@
+{
+  "name": "a2b-detailing",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "engines": { "node": ">=22.12.0" },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "npm run build && wrangler deploy",
+    "deploy:dry": "npm run build && wrangler deploy --dry-run"
+  },
+  "dependencies": { "astro": "^7.2.0" },
+  "devDependencies": { "wrangler": "^4.20.0" }
+}

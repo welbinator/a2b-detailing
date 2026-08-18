@@ -1,0 +1,1129 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : import.meta.env.BASE_URL + '/';
+
+const phoneDisplay = '(563) 313-3019';
+const phoneTel = '5633133019';
+const mapsPhone = '(563) 230-4901';
+const email = 'cwa2b@yahoo.com';
+const address = '4505 11th St, Rock Island, IL 61201';
+const mapsUrl =
+  'https://www.google.com/maps/search/?api=1&query=A+2+B+Detailing+4505+11th+St+Rock+Island+IL+61201';
+const dirsUrl =
+  'https://www.google.com/maps/dir/?api=1&destination=4505+11th+St+Rock+Island+IL+61201';
+const facebook = 'https://www.facebook.com/A2BDetail';
+
+const services = [
+  {
+    title: 'Full interior detailing',
+    blurb: 'Deep clean that resets carpets, seats, plastics, and glass — the cabin feels new again.',
+    tag: 'Interior',
+  },
+  {
+    title: 'Full exterior detailing',
+    blurb: 'Wash, decontaminate, and finish so paint, wheels, and trim look sharp from every angle.',
+    tag: 'Exterior',
+  },
+  {
+    title: 'Wash & wax',
+    blurb: 'A solid refresh when you want clean paint and protection without a full multi-stage detail.',
+    tag: 'Maintenance',
+  },
+  {
+    title: 'Ceramic coating',
+    blurb: 'Longer-lasting gloss and easier wash-ups — ask us what fits your vehicle and goals.',
+    tag: 'Protection',
+  },
+  {
+    title: 'Paint correction',
+    blurb: 'Work out swirl marks and dullness so the finish looks deeper and more uniform.',
+    tag: 'Correction',
+  },
+];
+---
+
+<Layout>
+  <div class="topnote">
+    <div class="wrap topnote-inner">
+      <span>Rock Island · Quad Cities auto detailing</span>
+      <a href={`tel:${phoneTel}`}>{phoneDisplay}</a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href={`${base}#top`} aria-label="A2B Detailing home">
+        <img src={`${base}images/logo.jpg`} alt="A2B Detailing logo" width="120" height="68" />
+        <span class="brand-text">
+          <strong>A2B Detailing</strong>
+          <em>From Start to Shine</em>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary">
+        <a href={`${base}#services`}>Services</a>
+        <a href={`${base}#about`}>About</a>
+        <a href={`${base}#visit`}>Visit</a>
+        <a href={`${base}#contact`}>Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-primary header-cta" href={`tel:${phoneTel}`}>Call now</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" id="navToggle">
+          <span class="sr-only">Menu</span>
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" hidden>
+      <a href={`${base}#services`}>Services</a>
+      <a href={`${base}#about`}>About</a>
+      <a href={`${base}#visit`}>Visit</a>
+      <a href={`${base}#contact`}>Contact</a>
+      <a class="btn btn-primary" href={`tel:${phoneTel}`}>Call {phoneDisplay}</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- HERO: stacked dark stage + A→B path graphic (not photo-left, not diagonal copper) -->
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <img src={`${base}images/screen-bg.jpg`} alt="" />
+        <div class="hero-scrim"></div>
+      </div>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="dot"></span>
+            Serving the Quad Cities since 2018
+          </p>
+          <h1>
+            Bring it in <span class="hl-filthy">filthy</span>.
+            <br />
+            Take it home <span class="hl-spark">sparkling</span>.
+          </h1>
+          <p class="lede">
+            A2B Detailing is full-service auto detailing in Rock Island — interior, exterior, ceramic
+            coating, paint correction, and wash &amp; wax done with professional-grade products and
+            careful hands.
+          </p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href={`tel:${phoneTel}`}>Call {phoneDisplay}</a>
+            <a class="btn btn-ghost" href={`${base}#contact`}>Request a detail</a>
+          </div>
+          <div class="hero-proof">
+            <div class="stars" aria-label="5.0 stars">★★★★★</div>
+            <p>
+              <strong>5.0</strong> on Google
+              <span class="sep">·</span>
+              <span>1 review on listing</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="hero-card" aria-hidden="false">
+          <div class="path-card">
+            <div class="path-row">
+              <span class="path-badge path-a">A</span>
+              <span class="path-label">Filthy in</span>
+            </div>
+            <div class="path-line">
+              <span class="path-dash"></span>
+              <span class="path-mid">detail day</span>
+              <span class="path-dash"></span>
+            </div>
+            <div class="path-row">
+              <span class="path-badge path-b">B</span>
+              <span class="path-label">Sparkling out</span>
+            </div>
+            <p class="path-note">From start to shine — every vehicle, every visit.</p>
+            <a class="btn btn-outline path-btn" href={dirsUrl} target="_blank" rel="noopener">
+              Get directions
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        {
+          [...services, ...services].map((s) => (
+            <span>
+              <i></i>
+              {s.title}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- SERVICES: bento, not equal 3-up -->
+    <section class="section" id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">What we do</p>
+          <h2>Detailing that covers the whole vehicle — not just a quick rinse.</h2>
+          <p class="section-sub">
+            Services named on A2B’s own site. Pricing depends on vehicle size and condition — call or
+            message for a quote.
+          </p>
+        </div>
+
+        <div class="bento">
+          {
+            services.map((s, i) => (
+              <article class={`bento-card bento-${i + 1}`}>
+                <span class="tag">{s.tag}</span>
+                <h3>{s.title}</h3>
+                <p>{s.blurb}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT: horizontal split with brand mark -->
+    <section class="section about" id="about">
+      <div class="wrap about-grid">
+        <div class="about-visual">
+          <img
+            src={`${base}images/logo-large.jpg`}
+            alt="A2B Detailing brand artwork"
+            width="640"
+            height="360"
+          />
+          <div class="about-chip">Est. 2018</div>
+        </div>
+        <div class="about-copy">
+          <p class="kicker">About A2B</p>
+          <h2>A2B Detailing — from start to shine.</h2>
+          <p>
+            Since 2018, A2B Detailing has been dedicated to top-quality auto detailing across the
+            Quad Cities. The team specializes in full interior and exterior detailing — bringing
+            showroom shine back to every vehicle they touch.
+          </p>
+          <p>
+            Whether it’s a deep interior clean, ceramic coating, paint correction, or a simple wash
+            and wax, the goal is the same: exceptional results with precision and care, using
+            professional-grade products and techniques to protect and enhance your vehicle’s
+            appearance.
+          </p>
+          <p class="mission">
+            Mission: provide the best detailing service in the Quad Cities while customers drive
+            away satisfied.
+          </p>
+          <div class="about-links">
+            <a class="btn btn-dark" href={`tel:${phoneTel}`}>Schedule by phone</a>
+            <a class="btn btn-outline" href={facebook} target="_blank" rel="noopener">Facebook</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <section class="trust">
+      <div class="wrap trust-grid">
+        <div>
+          <strong>5.0</strong>
+          <span>Google rating</span>
+        </div>
+        <div>
+          <strong>2018</strong>
+          <span>Serving QC drivers</span>
+        </div>
+        <div>
+          <strong>Full service</strong>
+          <span>Interior + exterior</span>
+        </div>
+        <div>
+          <strong>Accessible lot</strong>
+          <span>Wheelchair parking</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT -->
+    <section class="section visit" id="visit">
+      <div class="wrap visit-grid">
+        <div>
+          <p class="kicker">Visit / call</p>
+          <h2>Rock Island shop — stop by or book ahead.</h2>
+          <ul class="info-list">
+            <li>
+              <span>Address</span>
+              <strong>
+                <a href={mapsUrl} target="_blank" rel="noopener">{address}</a>
+              </strong>
+            </li>
+            <li>
+              <span>Phone</span>
+              <strong><a href={`tel:${phoneTel}`}>{phoneDisplay}</a></strong>
+              <em class="fine">Main number listed on a2bdetailing.com</em>
+            </li>
+            <li>
+              <span>Also on Maps</span>
+              <strong><a href={`tel:5632304901`}>{mapsPhone}</a></strong>
+              <em class="fine">Listed on the Google Business profile</em>
+            </li>
+            <li>
+              <span>Email</span>
+              <strong><a href={`mailto:${email}`}>{email}</a></strong>
+            </li>
+            <li>
+              <span>Hours</span>
+              <strong>Call or message for today’s schedule</strong>
+              <em class="fine">Weekly hours aren’t published on the listing yet</em>
+            </li>
+          </ul>
+          <div class="visit-actions">
+            <a class="btn btn-primary" href={dirsUrl} target="_blank" rel="noopener">Directions</a>
+            <a class="btn btn-outline" href={mapsUrl} target="_blank" rel="noopener">Open in Maps</a>
+          </div>
+        </div>
+        <div class="map-panel">
+          <div class="map-frame">
+            <p class="map-kicker">A → B</p>
+            <h3>4505 11th Street</h3>
+            <p>Rock Island, Illinois 61201</p>
+            <p class="map-plus">Plus code near pin: FC88+MG</p>
+            <a class="map-link" href={mapsUrl} target="_blank" rel="noopener">View place on Google Maps →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact">
+      <div class="wrap contact-grid">
+        <div>
+          <p class="kicker">Contact</p>
+          <h2>Tell us about your vehicle.</h2>
+          <p class="section-sub">
+            Send a quick note with your vehicle type and what you want (interior, exterior, ceramic,
+            etc.). For the fastest reply, call.
+          </p>
+          <a class="btn btn-dark" href={`tel:${phoneTel}`}>Call {phoneDisplay}</a>
+        </div>
+
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="hp" aria-hidden="true">
+            <label for="website_hp">Website</label>
+            <input type="text" id="website_hp" name="website_hp" tabindex="-1" autocomplete="off" />
+          </div>
+          <label>
+            Name
+            <input type="text" name="name" required autocomplete="name" />
+          </label>
+          <div class="two">
+            <label>
+              Email
+              <input type="email" name="email" required autocomplete="email" />
+            </label>
+            <label>
+              Phone
+              <input type="tel" name="phone" autocomplete="tel" />
+            </label>
+          </div>
+          <label>
+            Message
+            <textarea
+              name="message"
+              rows="5"
+              required
+              placeholder="Vehicle year/make/model + what you’d like done"
+            ></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit" id="contactSubmit">Send message</button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <strong>A2B Detailing</strong>
+        <p>Quad Cities full-service auto detailing · Rock Island, IL</p>
+      </div>
+      <div class="footer-links">
+        <a href={`tel:${phoneTel}`}>{phoneDisplay}</a>
+        <a href={`mailto:${email}`}>{email}</a>
+        <a href={facebook} target="_blank" rel="noopener">Facebook</a>
+      </div>
+      <p class="legal">© {new Date().getFullYear()} A 2 B Detailing. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="mobile-bar" aria-hidden="false">
+    <a class="btn btn-primary" href={`tel:${phoneTel}`}>Call</a>
+    <a class="btn btn-outline" href={`${base}#contact`}>Message</a>
+  </div>
+</Layout>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  .topnote {
+    background: var(--night);
+    color: var(--chrome);
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+  .topnote-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.45rem 0;
+  }
+  .topnote a {
+    color: var(--mint);
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    backdrop-filter: blur(14px);
+    background: rgba(243, 245, 248, 0.88);
+    border-bottom: 1px solid rgba(217, 224, 234, 0.9);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 72px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-width: 0;
+  }
+  .brand img {
+    width: 64px;
+    height: auto;
+    border-radius: 10px;
+    background: #000;
+  }
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+  .brand-text strong {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+  }
+  .brand-text em {
+    font-style: normal;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .desktop-nav {
+    display: none;
+    gap: 1.25rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+  }
+  .desktop-nav a:hover {
+    color: var(--violet);
+  }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .header-cta {
+    display: none;
+    padding: 0.7rem 1rem;
+  }
+  .nav-toggle {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: var(--white);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .nav-toggle span:not(.sr-only) {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--ink);
+  }
+  .mobile-nav {
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.5rem 1rem 1rem;
+    border-top: 1px solid var(--line);
+    background: var(--paper);
+  }
+  .mobile-nav[hidden] {
+    display: none !important;
+  }
+  .mobile-nav a {
+    padding: 0.75rem 0.4rem;
+    font-weight: 600;
+  }
+
+  .hero {
+    position: relative;
+    color: #fff;
+    overflow: hidden;
+    padding: 2.5rem 0 3.25rem;
+    background: var(--night);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+  }
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.34;
+    filter: saturate(0.85) contrast(1.05);
+  }
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 18% 20%, rgba(107, 124, 255, 0.28), transparent 42%),
+      linear-gradient(160deg, rgba(7, 16, 24, 0.55) 0%, rgba(7, 16, 24, 0.92) 70%);
+  }
+  .hero-grid {
+    position: relative;
+    display: grid;
+    gap: 1.75rem;
+    align-items: end;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 1rem;
+    color: var(--mint);
+    font-weight: 700;
+    font-size: 0.86rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--mint);
+    box-shadow: 0 0 0 6px rgba(94, 234, 212, 0.15);
+  }
+  .hero h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(2.35rem, 8vw, 4.4rem);
+    max-width: 12ch;
+  }
+  .hl-filthy {
+    color: #ffb4a8;
+  }
+  .hl-spark {
+    background: linear-gradient(90deg, var(--mint), #c4d0ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .lede {
+    margin: 0 0 1.4rem;
+    max-width: 38rem;
+    color: #d5deea;
+    font-size: 1.05rem;
+  }
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-bottom: 1.35rem;
+  }
+  .hero-proof {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem 1rem;
+    color: #c3cedd;
+    font-size: 0.92rem;
+  }
+  .hero-proof p {
+    margin: 0;
+  }
+  .stars {
+    color: #ffd56a;
+    letter-spacing: 0.08em;
+  }
+  .sep {
+    opacity: 0.5;
+    margin: 0 0.25rem;
+  }
+
+  .path-card {
+    background: rgba(255, 255, 255, 0.96);
+    color: var(--ink);
+    border-radius: 24px;
+    padding: 1.35rem 1.25rem 1.25rem;
+    box-shadow: var(--shadow);
+    max-width: 360px;
+  }
+  .path-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .path-badge {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+  .path-a {
+    background: #1a2433;
+    color: #ffb4a8;
+  }
+  .path-b {
+    background: linear-gradient(135deg, var(--violet-hot), var(--violet));
+    color: #fff;
+  }
+  .path-label {
+    font-weight: 800;
+    font-family: var(--display);
+    font-size: 1.2rem;
+  }
+  .path-line {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0.75rem 0 0.75rem 1.25rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .path-dash {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--violet), transparent);
+  }
+  .path-note {
+    margin: 0.9rem 0 1rem;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+  .path-btn {
+    width: 100%;
+  }
+
+  .marquee {
+    overflow: hidden;
+    background: var(--night-2);
+    border-block: 1px solid rgba(255, 255, 255, 0.06);
+    color: #d7e0ef;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+    padding: 0.85rem 0;
+    animation: scroll 32s linear infinite;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 0.98rem;
+    letter-spacing: 0.02em;
+  }
+  .marquee-track span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    white-space: nowrap;
+  }
+  .marquee-track i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--mint);
+    display: inline-block;
+  }
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .section {
+    padding: 4.25rem 0;
+  }
+  .section-head {
+    max-width: 40rem;
+    margin-bottom: 1.75rem;
+  }
+  .kicker {
+    margin: 0 0 0.55rem;
+    color: var(--violet);
+    font-weight: 800;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .section h2 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.7rem, 4vw, 2.55rem);
+  }
+  .section-sub {
+    margin: 0;
+    color: var(--ink-soft);
+    max-width: 38rem;
+  }
+
+  .bento {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+  .bento-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.2rem 1.35rem;
+    box-shadow: 0 8px 24px rgba(12, 18, 28, 0.04);
+  }
+  .bento-card h3 {
+    margin: 0.45rem 0 0.45rem;
+    font-size: 1.28rem;
+  }
+  .bento-card p {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+  .tag {
+    display: inline-flex;
+    padding: 0.28rem 0.6rem;
+    border-radius: 999px;
+    background: #eef0ff;
+    color: var(--violet);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .bento-1 {
+    background: linear-gradient(160deg, #101b2b, #18263a);
+    color: #fff;
+    border-color: transparent;
+  }
+  .bento-1 p {
+    color: #c5d0e0;
+  }
+  .bento-1 .tag {
+    background: rgba(94, 234, 212, 0.14);
+    color: var(--mint);
+  }
+  .bento-2 {
+    border-color: rgba(107, 124, 255, 0.28);
+  }
+
+  .about {
+    background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+  }
+  .about-grid {
+    display: grid;
+    gap: 1.75rem;
+    align-items: center;
+  }
+  .about-visual {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: var(--shadow);
+  }
+  .about-visual img {
+    width: 100%;
+    height: auto;
+  }
+  .about-chip {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    background: rgba(7, 16, 24, 0.88);
+    color: #fff;
+    font-family: var(--display);
+    font-weight: 700;
+    padding: 0.55rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .about-copy p {
+    color: var(--ink-soft);
+  }
+  .mission {
+    border-left: 3px solid var(--violet);
+    padding-left: 0.9rem;
+    font-weight: 600;
+    color: var(--ink) !important;
+  }
+  .about-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1.1rem;
+  }
+
+  .trust {
+    background: var(--night);
+    color: #fff;
+    padding: 1.6rem 0;
+  }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 1.25rem;
+  }
+  .trust-grid strong {
+    display: block;
+    font-family: var(--display);
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
+  }
+  .trust-grid span {
+    color: var(--chrome);
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  .visit-grid,
+  .contact-grid {
+    display: grid;
+    gap: 1.75rem;
+  }
+  .info-list {
+    list-style: none;
+    margin: 1.25rem 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  .info-list li {
+    display: grid;
+    gap: 0.15rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .info-list span {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .info-list strong {
+    font-size: 1.05rem;
+  }
+  .info-list a:hover {
+    color: var(--violet);
+  }
+  .fine {
+    font-style: normal;
+    color: var(--muted);
+    font-size: 0.86rem;
+  }
+  .visit-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+  .map-panel {
+    border-radius: 24px;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(107, 124, 255, 0.35), transparent 40%),
+      linear-gradient(155deg, #0d1a2a, #15263a 55%, #1a3148);
+    color: #fff;
+    min-height: 280px;
+    display: grid;
+    align-items: end;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  .map-kicker {
+    margin: 0 0 0.4rem;
+    color: var(--mint);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+  .map-frame h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1.8rem;
+  }
+  .map-frame p {
+    margin: 0 0 0.35rem;
+    color: #c5d2e3;
+  }
+  .map-plus {
+    font-size: 0.88rem !important;
+    opacity: 0.85;
+  }
+  .map-link {
+    display: inline-block;
+    margin-top: 1rem;
+    font-weight: 700;
+    color: #fff;
+    border-bottom: 2px solid var(--violet-hot);
+    padding-bottom: 0.15rem;
+  }
+
+  .contact {
+    background: var(--white);
+    border-top: 1px solid var(--line);
+  }
+  .contact-form {
+    display: grid;
+    gap: 0.85rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 1.2rem;
+  }
+  .contact-form label {
+    display: grid;
+    gap: 0.35rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 0.85rem 0.9rem;
+    background: var(--white);
+    color: var(--ink);
+    font-size: 16px; /* iOS zoom guard */
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: 2px solid var(--violet);
+    border-color: transparent;
+  }
+  .two {
+    display: grid;
+    gap: 0.85rem;
+  }
+  .hp {
+    position: absolute;
+    left: -9999px;
+    height: 0;
+    overflow: hidden;
+  }
+  .form-status {
+    margin: 0;
+    min-height: 1.25em;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .form-status.ok {
+    color: #0f766e;
+  }
+  .form-status.err {
+    color: #b91c1c;
+  }
+
+  .site-footer {
+    background: var(--night);
+    color: #c5d0e0;
+    padding: 2.25rem 0 6.5rem;
+  }
+  .footer-inner {
+    display: grid;
+    gap: 1rem;
+  }
+  .footer-inner strong {
+    color: #fff;
+    font-family: var(--display);
+    font-size: 1.15rem;
+  }
+  .footer-inner p {
+    margin: 0.25rem 0 0;
+  }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem 1.15rem;
+    font-weight: 600;
+  }
+  .footer-links a:hover {
+    color: var(--mint);
+  }
+  .legal {
+    font-size: 0.84rem;
+    color: var(--chrome);
+  }
+
+  .mobile-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem;
+    padding: 0.7rem 0.85rem calc(0.7rem + env(safe-area-inset-bottom));
+    background: rgba(243, 245, 248, 0.94);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--line);
+  }
+
+  @media (min-width: 760px) {
+    .desktop-nav {
+      display: flex;
+    }
+    .header-cta {
+      display: inline-flex;
+    }
+    .nav-toggle {
+      display: none;
+    }
+    .mobile-nav {
+      display: none !important;
+    }
+    .hero {
+      padding: 4rem 0 4.5rem;
+    }
+    .hero-grid {
+      grid-template-columns: 1.35fr 0.9fr;
+      align-items: center;
+    }
+    .bento {
+      grid-template-columns: 1.2fr 1fr 1fr;
+      grid-template-rows: auto auto;
+    }
+    .bento-1 {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 100%;
+    }
+    .bento-2 {
+      grid-column: 2 / span 2;
+    }
+    .about-grid,
+    .visit-grid,
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .trust-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .two {
+      grid-template-columns: 1fr 1fr;
+    }
+    .mobile-bar {
+      display: none;
+    }
+    .site-footer {
+      padding-bottom: 2.5rem;
+    }
+    .footer-inner {
+      grid-template-columns: 1.3fr 1fr;
+      align-items: start;
+    }
+    .legal {
+      grid-column: 1 / -1;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('mobile-nav');
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    if (open) menu?.setAttribute('hidden', '');
+    else menu?.removeAttribute('hidden');
+  });
+  menu?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      toggle?.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('hidden', '');
+    });
+  });
+
+  const form = document.getElementById('contactForm') as HTMLFormElement | null;
+  const status = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('contactSubmit') as HTMLButtonElement | null;
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form || !status || !submitBtn) return;
+    status.textContent = 'Sending…';
+    status.className = 'form-status';
+    submitBtn.disabled = true;
+    const fd = new FormData(form);
+    const payload = {
+      name: String(fd.get('name') || ''),
+      email: String(fd.get('email') || ''),
+      phone: String(fd.get('phone') || ''),
+      message: String(fd.get('message') || ''),
+      website_hp: String(fd.get('website_hp') || ''),
+    };
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.error) throw new Error(data.error || 'Something went wrong');
+      status.textContent = data.note || 'Thanks — we got your message.';
+      status.className = 'form-status ok';
+      form.reset();
+    } catch (err) {
+      status.textContent = err instanceof Error ? err.message : 'Could not send. Please call us.';
+      status.className = 'form-status err';
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+</script>
